@@ -125,7 +125,7 @@ Let's make those folders!
 1. Make a character vector with entries `"01"`, `"02"`, ..., `12` with `str_pad()`.
 
 ```{r}
-(num <- str_pad(3:12, width = 2, side = "left", pad = " "))
+(num <- str_pad(3:12, width = 2, side = "left", pad = "0"))
 ```
 
 2. Use `str_c()` to combine `"cm1"` with the numbers:
