@@ -125,7 +125,7 @@ Let's make those folders!
 1. Make a character vector with entries `"01"`, `"02"`, ..., `12` with `str_pad()`.
 
 ```{r}
-(num <- str_pad(3:12, width = 2, side = "left", pad = "0"))
+(num <- str_pad(3:12, width = 2, side = "left", pad = " "))
 ```
 
 2. Use `str_c()` to combine `"cm1"` with the numbers:
@@ -148,6 +148,10 @@ test_that("folder names are length 11.", {
     - This code might work (depending on your directory): `for (folder in folders) dir.create(here::here(folder))`
     - We'll learn how to use `purrr` instead of loops next week.
 
+```{r}
+for (i in 1:length(folders)) dir.create(here::here(folders[i]))
+```
+
 ### Make README's
 
 Now, let's seed the folders with README's.
@@ -155,14 +159,14 @@ Now, let's seed the folders with README's.
 1. Add `/README.md` to the end of the folder names stored in `folders`:
 
 ```{r}
-(files <- str_c(folders, "/README.md"))
+(files <- str_c(here::here(folders), "/README.md"))
 ```
 
 2. Make a vector of contents to put in each README. Put a title and body. 
     - Hint: Use `\n` to indicate a new line! This works in graphs, too.
     
 ```{r}
-(contents <- str_c("# Participation\n\n Participation for class meeting ", 1:12))
+(contents <- str_c("# Participation\n\n Participation for class meeting ", 3:12))
 cat(contents[1])
 ```
 
@@ -170,6 +174,11 @@ cat(contents[1])
     - `for (i in 1:length(files)) write(contents[i], files[i])`
     - There's a better alternative to a loop using `purrr`. Next week's topic!
     - This code might not work, depending on your workind directory and system.
+    
+```{r}
+for (i in 1:length(files)) write(contents[i], files[i])
+```
+
 
 ## Regular Expressions (aka regex)
 
